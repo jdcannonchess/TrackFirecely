@@ -43,7 +43,7 @@ fun CreateTaskScreen(
     val uiState by viewModel.uiState.collectAsState()
 
     val datePickerState = rememberDatePickerState(
-        initialSelectedDateMillis = DateUtils.toEpochMillis(uiState.scheduledDate)
+        initialSelectedDateMillis = DateUtils.toUtcEpochMillis(uiState.scheduledDate)
     )
 
     LaunchedEffect(uiState.isSaved) {
@@ -60,7 +60,7 @@ fun CreateTaskScreen(
                 TextButton(
                     onClick = {
                         datePickerState.selectedDateMillis?.let { millis ->
-                            viewModel.selectDate(DateUtils.fromEpochMillis(millis))
+                            viewModel.selectDate(DateUtils.fromUtcEpochMillis(millis))
                         }
                     }
                 ) {

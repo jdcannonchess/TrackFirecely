@@ -57,6 +57,22 @@ object DateUtils {
     }
     
     /**
+     * Convert UTC epoch millis to LocalDate.
+     * Use this for Material DatePicker values which return midnight UTC.
+     */
+    fun fromUtcEpochMillis(millis: Long): LocalDate {
+        return Instant.ofEpochMilli(millis).atZone(ZoneId.of("UTC")).toLocalDate()
+    }
+    
+    /**
+     * Convert LocalDate to UTC epoch millis (midnight UTC).
+     * Use this when initializing Material DatePicker.
+     */
+    fun toUtcEpochMillis(date: LocalDate): Long {
+        return date.atStartOfDay(ZoneId.of("UTC")).toInstant().toEpochMilli()
+    }
+    
+    /**
      * Get today's date at midnight as epoch millis
      */
     fun todayMillis(): Long {
