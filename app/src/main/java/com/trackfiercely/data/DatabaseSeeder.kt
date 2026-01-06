@@ -139,6 +139,19 @@ class DatabaseSeeder(
                 isSystemTask = true
             )
         )
+        
+        // Blood Pressure - Special BP tracking task
+        taskRepository.createTask(
+            Task(
+                name = "Blood Pressure",
+                category = Category.HEALTH_FITNESS,
+                inputType = TaskInputType.BLOOD_PRESSURE,
+                inputConfig = "{}",
+                scheduleType = ScheduleType.WEEKLY,
+                assignedDays = 0, // Not assigned to any day initially - user can assign
+                isSystemTask = true
+            )
+        )
     }
     
     // ============ COMMON TASKS ============
